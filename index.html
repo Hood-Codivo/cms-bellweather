@@ -2,23 +2,114 @@
 <html lang="en">
   <head>
     <meta charset="UTF-8" />
+    <!-- Viewport & mobile -->
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>bellwether-role-compass</title>
-    <meta name="description" content="Lovable Generated Project" />
-    <meta name="author" content="Lovable" />
+    <!-- Primary title & description (visible in search results) -->
+    <title>
+      Bellwether Precast — Building with Precision | Precast Concrete Products
+    </title>
+    <meta
+      name="description"
+      content="Bellwether Precast manufactures high-quality precast concrete components — drainage systems, concrete blocks, paving stones, culverts, beams and more. Durable, precise, and cost-effective solutions for modern construction."
+    />
+    <meta
+      name="keywords"
+      content="Bellwether Precast, precast concrete, concrete blocks, drainage systems, culverts, paving stones, construction Nigeria, concrete products"
+    />
+    <meta name="author" content="Bellwether Precast" />
+    <meta name="robots" content="index, follow" />
+    <meta name="theme-color" content="#0b3a58" />
 
-    <meta property="og:title" content="bellwether-role-compass" />
-    <meta property="og:description" content="Lovable Generated Project" />
+    <!-- Canonical -->
+    <link rel="canonical" href="https://bellwetherprecast.com/" />
+
+    <!-- Favicon & web app manifest (replace with your files) -->
+    <link rel="icon" href="/favicon.ico" />
+    <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png" />
+    <link rel="manifest" href="/site.webmanifest" />
+
+    <!-- Open Graph / Facebook -->
+    <meta
+      property="og:title"
+      content="Bellwether Precast — Building with Precision"
+    />
+    <meta
+      property="og:description"
+      content="High-quality precast concrete components — drainage systems, blocks, paving stones, culverts and structural elements built for durability and precision."
+    />
     <meta property="og:type" content="website" />
-    <meta property="og:image" content="https://lovable.dev/opengraph-image-p98pqg.png" />
+    <meta property="og:url" content="https://bellwetherprecast.com/" />
+    <!-- If you have a logo or share image, put the full URL here (replace /og-image.png) -->
+    <meta
+      property="og:image"
+      content="https://bellwetherprecast.com/og-image.png"
+    />
+    <meta property="og:site_name" content="Bellwether Precast" />
 
+    <!-- Twitter Card -->
     <meta name="twitter:card" content="summary_large_image" />
-    <meta name="twitter:site" content="@lovable_dev" />
-    <meta name="twitter:image" content="https://lovable.dev/opengraph-image-p98pqg.png" />
+    <meta name="twitter:site" content="@BellwetherPrecast" />
+    <meta
+      name="twitter:title"
+      content="Bellwether Precast — Building with Precision"
+    />
+    <meta
+      name="twitter:description"
+      content="Precast concrete products: drainage systems, blocks, paving stones, culverts and more. Durable, precise and ready for your next project."
+    />
+    <meta
+      name="twitter:image"
+      content="https://bellwetherprecast.com/og-image.png"
+    />
+
+    <!-- Structured Data (JSON-LD) for Organization -->
+    <script type="application/ld+json">
+      {
+        "@context": "https://schema.org",
+        "@type": "Organization",
+        "name": "Bellwether Precast",
+        "url": "https://bellwetherprecast.com/",
+        "logo": "https://bellwetherprecast.com/logo.png",
+        "description": "Bellwether Precast manufactures precast concrete components including drainage systems, concrete blocks, paving stones, beams and culverts.",
+        "contactPoint": [
+          {
+            "@type": "ContactPoint",
+            "telephone": "+2348140869831",
+            "contactType": "customer service",
+            "areaServed": "NG"
+          }
+        ],
+        "email": "info@bellwetherprecast.com",
+        "sameAs": [
+          "https://wa.me/2349028984219",
+          "https://instagram.com/",
+          "https://tiktok.com/",
+          "https://x.com/"
+        ]
+      }
+    </script>
+
+    <!-- Optional: preload important assets (logo, fonts) -->
+    <!-- <link rel="preload" href="/assets/fonts/your-font.woff2" as="font" type="font/woff2" crossorigin> -->
+    <!-- <link rel="preload" href="/logo.png" as="image"> -->
+
+    <!-- Analytics / SEO scripts (add your analytics here) -->
+    <!-- Example: Google Analytics (replace with your GA id) -->
+    <!--
+    <script async src="https://www.googletagmanager.com/gtag/js?id=GA_MEASUREMENT_ID"></script>
+    <script>
+      window.dataLayer = window.dataLayer || [];
+      function gtag(){dataLayer.push(arguments);}
+      gtag('js', new Date());
+      gtag('config', 'GA_MEASUREMENT_ID');
+    </script>
+    -->
   </head>
 
   <body>
     <div id="root"></div>
+
+    <!-- Main bundle (React entry) -->
     <script type="module" src="/src/main.tsx"></script>
   </body>
 </html>
