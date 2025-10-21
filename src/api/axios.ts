@@ -10,7 +10,7 @@ axios.defaults.headers.common["X-Requested-With"] = "XMLHttpRequest";
 
 const api = axios.create({
   // baseURL: "http://localhost:3000",
-  baseURL: "https://cms.bellwetherprecast.com",
+  baseURL: "https://bellweather-backend-1.onrender.com",
   withCredentials: true, // Ensure credentials are sent with requests
   headers: {
     "Content-Type": "application/json",
