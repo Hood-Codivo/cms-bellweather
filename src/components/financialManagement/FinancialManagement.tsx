@@ -40,7 +40,6 @@ import {
   TrendingUp,
   TrendingDown,
   DollarSign,
-  PieChartIcon,
   Users,
 } from "lucide-react";
 
@@ -248,8 +247,8 @@ const FinancialManagement: React.FC = () => {
   useEffect(() => {
     const initializeData = async () => {
       setInitialLoadError(null);
-      console.log('Initializing financial data...');
-      
+      console.log("Initializing financial data...");
+
       try {
         const results = await Promise.allSettled([
           fetchFinancialOverview(),
@@ -264,23 +263,27 @@ const FinancialManagement: React.FC = () => {
 
         // Check for any failed requests
         const errors = results
-          .map((result, index) => (result.status === 'rejected' ? index : -1))
-          .filter(index => index !== -1);
+          .map((result, index) => (result.status === "rejected" ? index : -1))
+          .filter((index) => index !== -1);
 
         if (errors.length > 0) {
-          console.error('Some requests failed:', errors);
+          console.error("Some requests failed:", errors);
           if (retryCount < 3) {
             console.log(`Retrying failed requests (${retryCount + 1}/3)...`);
-            setTimeout(() => setRetryCount(c => c + 1), 2000); // Retry after 2 seconds
+            setTimeout(() => setRetryCount((c) => c + 1), 2000); // Retry after 2 seconds
           } else {
-            setInitialLoadError('Failed to load some financial data. Please try refreshing the page.');
+            setInitialLoadError(
+              "Failed to load some financial data. Please try refreshing the page."
+            );
           }
         } else {
-          console.log('All financial data loaded successfully');
+          console.log("All financial data loaded successfully");
         }
       } catch (err) {
-        console.error('Error in initializeData:', err);
-        setInitialLoadError('Failed to initialize financial data. Please try again.');
+        console.error("Error in initializeData:", err);
+        setInitialLoadError(
+          "Failed to initialize financial data. Please try again."
+        );
       }
     };
 

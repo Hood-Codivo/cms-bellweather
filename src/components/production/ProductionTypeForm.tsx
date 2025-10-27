@@ -375,7 +375,7 @@ export const ProductionTypeForm = ({
                   </span>
                 </div>
                 <div className="text-sm text-muted-foreground">
-                  This is the estimated cost to produce one unit of this
+                  This is the estimated cost to produce one batch of this
                   production type
                 </div>
               </div>

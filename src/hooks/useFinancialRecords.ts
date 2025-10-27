@@ -150,13 +150,13 @@ export function useFinancialRecords() {
   const [cashFlowStatement, setCashFlowStatement] =
     useState<CashFlowStatement | null>(null);
 
-  const fetchWithRetry = async <T,>(
+  const fetchWithRetry = async <T>(
     requestFn: () => Promise<T>,
     maxRetries = 3,
     delay = 1000
   ): Promise<T> => {
     let lastError: any;
-    
+
     for (let attempt = 1; attempt <= maxRetries; attempt++) {
       try {
         const result = await requestFn();
@@ -167,42 +167,43 @@ export function useFinancialRecords() {
       } catch (error) {
         lastError = error;
         console.warn(`Attempt ${attempt} failed:`, error.message);
-        
+
         if (attempt < maxRetries) {
           // Only wait if there are more retries left
-          await new Promise(resolve => setTimeout(resolve, delay * attempt));
+          await new Promise((resolve) => setTimeout(resolve, delay * attempt));
         }
       }
     }
-    
+
     throw lastError;
   };
 
   const fetchFinancialOverview = useCallback(async () => {
     setIsLoading(true);
     setError(null);
-    console.log('Fetching financial overview...');
-    
+    console.log("Fetching financial overview...");
+
     try {
-      const response = await fetchWithRetry(() => 
+      const response = await fetchWithRetry(() =>
         api.get("/api/v1/financial/overview")
       );
-      
-      console.log('Financial overview response:', response.data);
+
+      console.log("Financial overview response:", response.data);
       setFinancialOverview(response.data);
       return response.data;
     } catch (err: any) {
-      const errorMessage = err.response?.data?.message || 
-                         err.message || 
-                         'Failed to fetch financial overview';
-      
-      console.error('Error in fetchFinancialOverview:', {
+      const errorMessage =
+        err.response?.data?.message ||
+        err.message ||
+        "Failed to fetch financial overview";
+
+      console.error("Error in fetchFinancialOverview:", {
         error: err.message,
         response: err.response?.data,
         status: err.response?.status,
-        statusText: err.response?.statusText
+        statusText: err.response?.statusText,
       });
-      
+
       setError(errorMessage);
       throw err;
     } finally {
@@ -243,15 +244,20 @@ export function useFinancialRecords() {
           `/api/v1/financial/records/monthly-summary?${params.toString()}`
         );
 
+        // Get the year from the response
+        const year = response.data.year;
+
         // Transform the data
+        // Transform the data - note: year is at response.data.year, not in each item
         const monthlyData = response.data.data.map((item: any) => ({
-          period: `${item.year}-${item.month.toString().padStart(2, "0")}`,
+          period: `${year}-${item.month.toString().padStart(2, "0")}`,
           revenue: item.revenue,
           expenses: item.expenses,
           profit: item.profit,
         }));
 
         setMonthlySummary(monthlyData);
+        console.log(monthlyData);
       } catch (err: any) {
         setError("Failed to fetch monthly summary");
         console.error("Error fetching monthly summary:", err);

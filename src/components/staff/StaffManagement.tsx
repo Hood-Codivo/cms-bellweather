@@ -613,8 +613,7 @@ export function StaffManagement() {
                   <div className="flex items-center gap-4">
                     <div className="text-right">
                       <div className="flex items-center gap-1 text-sm font-semibold">
-                        <DollarSign className="h-4 w-4" />₦
-                        {parseFloat(member.salary).toLocaleString()}
+                        ₦{parseFloat(member.salary).toLocaleString()}
                       </div>
                       <p className="text-xs text-muted-foreground">
                         Hired: {new Date(member.hireDate).toLocaleDateString()}
