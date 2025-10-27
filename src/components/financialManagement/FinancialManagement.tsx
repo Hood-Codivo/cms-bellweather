@@ -344,6 +344,8 @@ const FinancialManagement: React.FC = () => {
     }
   };
 
+  // this is a new update
+
   // Prepare monthly chart data
   const monthlyChartData = monthlySummary.map((item) => {
     // Parse period assuming format "YYYY-MM"
