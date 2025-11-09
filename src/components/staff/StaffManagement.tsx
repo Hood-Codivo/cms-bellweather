@@ -59,6 +59,7 @@ export function StaffManagement() {
     position: "",
     salary: "",
     commissionRate: "0",
+    commissionAmount: "0",
     hireDate: "",
     isActive: true,
     user: {
@@ -129,6 +130,7 @@ export function StaffManagement() {
         position: "",
         salary: "",
         commissionRate: "0",
+        commissionAmount: "0",
         hireDate: "",
         isActive: true,
         user: {
@@ -157,6 +159,7 @@ export function StaffManagement() {
       position: "",
       salary: "",
       commissionRate: "0",
+      commissionAmount: "0",
       hireDate: "",
       isActive: true,
       user: {
@@ -197,6 +200,7 @@ export function StaffManagement() {
       !form.department ||
       !form.position ||
       !form.salary ||
+      !form.commissionAmount ||
       !form.hireDate ||
       !form.user?.email ||
       !form.user?.firstName ||
@@ -218,6 +222,7 @@ export function StaffManagement() {
       employeeId: form.employeeId,
       department: form.department,
       position: form.position,
+      commissionAmount: Number(form.commissionAmount),
       hireDate: form.hireDate,
       salary: Number(form.salary),
       commissionRate: Number(form.commissionRate) || 0,

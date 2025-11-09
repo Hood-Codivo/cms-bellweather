@@ -150,11 +150,14 @@ export default function MarketingManagement() {
   const [searchTerm, setSearchTerm] = useState("");
 
   const formatCurrency = (amount: number) => {
-    return '₦' + new Intl.NumberFormat("en-NG", {
-      style: "decimal",
-      minimumFractionDigits: 2,
-      maximumFractionDigits: 2
-    }).format(amount);
+    return (
+      "₦" +
+      new Intl.NumberFormat("en-NG", {
+        style: "decimal",
+        minimumFractionDigits: 2,
+        maximumFractionDigits: 2,
+      }).format(amount)
+    );
   };
 
   // Fetch data based on user role
@@ -168,7 +171,7 @@ export default function MarketingManagement() {
         const response = await analyticsApi.getAdminDashboard({
           from: dateRange.from,
           to: dateRange.to,
-          period: filterPeriod as any
+          period: filterPeriod as any,
         });
         setAdminDashboardData(response);
       } else {
@@ -176,7 +179,7 @@ export default function MarketingManagement() {
         const response = await analyticsApi.getOverview({
           from: dateRange.from,
           to: dateRange.to,
-          period: filterPeriod as any
+          period: filterPeriod as any,
         });
         setMarketerDashboardData(response);
       }
@@ -234,8 +237,14 @@ export default function MarketingManagement() {
   };
 
   // Use React Query for better data fetching
-  const queryKey = ['marketingDashboard', dateRange.from, dateRange.to, filterPeriod, isAdmin] as const;
-  
+  const queryKey = [
+    "marketingDashboard",
+    dateRange.from,
+    dateRange.to,
+    filterPeriod,
+    isAdmin,
+  ] as const;
+
   const { refetch: refetchData, error: queryError } = useQuery({
     queryKey,
     queryFn: async () => {
@@ -243,8 +252,8 @@ export default function MarketingManagement() {
         await fetchDashboardData();
         return true;
       } catch (error) {
-        console.error('Error in queryFn:', error);
-        setError('Failed to load dashboard data. Please try again.');
+        console.error("Error in queryFn:", error);
+        setError("Failed to load dashboard data. Please try again.");
         throw error;
       }
     },
@@ -256,8 +265,8 @@ export default function MarketingManagement() {
   // Handle query errors
   useEffect(() => {
     if (queryError) {
-      console.error('Query error:', queryError);
-      setError('Failed to load dashboard data. Please try again.');
+      console.error("Query error:", queryError);
+      setError("Failed to load dashboard data. Please try again.");
     }
   }, [queryError]);
 
@@ -279,14 +288,17 @@ export default function MarketingManagement() {
       const blob = await analyticsApi.export({
         from: dateRange.from,
         to: dateRange.to,
-        format: 'xlsx'
+        format: "xlsx",
       });
 
       // Create download link
       const url = window.URL.createObjectURL(blob);
-      const link = document.createElement('a');
+      const link = document.createElement("a");
       link.href = url;
-      link.setAttribute('download', `marketing-export-${new Date().toISOString().split('T')[0]}.xlsx`);
+      link.setAttribute(
+        "download",
+        `marketing-export-${new Date().toISOString().split("T")[0]}.xlsx`
+      );
       document.body.appendChild(link);
       link.click();
       link.remove();

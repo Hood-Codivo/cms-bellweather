@@ -1,5 +1,5 @@
 import { useState, useEffect } from "react";
-import axios from "axios";
+import api from "@/api/axios";
 
 interface Customer {
   id: string;
@@ -23,59 +23,6 @@ interface UseCustomersReturn {
   refetch: () => Promise<void>;
 }
 
-// Configure the base URL for your backend API
-const API_BASE_URL =
-  import.meta.env.VITE_API_BASE_URL || "http://localhost:3000";
-
-// Create axios instance with proper configuration
-const apiClient = axios.create({
-  baseURL: API_BASE_URL,
-  timeout: 10000,
-  headers: {
-    "Content-Type": "application/json",
-  },
-});
-
-// Add request interceptor for debugging
-apiClient.interceptors.request.use(
-  (config) => {
-    console.log("Making API request:", {
-      method: config.method,
-      url: config.url,
-      baseURL: config.baseURL,
-      fullURL: `${config.baseURL}${config.url}`,
-    });
-    return config;
-  },
-  (error) => {
-    console.error("Request interceptor error:", error);
-    return Promise.reject(error);
-  }
-);
-
-// Add response interceptor for debugging
-apiClient.interceptors.response.use(
-  (response) => {
-    console.log("API response received:", {
-      status: response.status,
-      url: response.config.url,
-      dataType: typeof response.data,
-      isArray: Array.isArray(response.data),
-      dataLength: Array.isArray(response.data) ? response.data.length : "N/A",
-    });
-    return response;
-  },
-  (error) => {
-    console.error("Response interceptor error:", {
-      message: error.message,
-      status: error.response?.status,
-      url: error.config?.url,
-      data: error.response?.data,
-    });
-    return Promise.reject(error);
-  }
-);
-
 export function useCustomers(): UseCustomersReturn {
   const [customers, setCustomers] = useState<Customer[]>([]);
   const [selectedCustomer, setSelectedCustomer] = useState<Customer | null>(
@@ -91,7 +38,7 @@ export function useCustomers(): UseCustomersReturn {
 
     try {
       console.log("Making API request to /api/v1/customers");
-      const response = await apiClient.get("/api/v1/customers");
+      const response = await api.get("/api/v1/customers");
 
       // Check if we got HTML instead of JSON (common routing issue)
       if (
@@ -160,7 +107,7 @@ export function useCustomers(): UseCustomersReturn {
     setError(null);
 
     try {
-      const response = await apiClient.get(`/api/v1/customers/${id}`);
+      const response = await api.get(`/api/v1/customers/${id}`);
 
       // Check if we got HTML instead of JSON
       if (

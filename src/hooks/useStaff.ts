@@ -21,6 +21,7 @@ export interface StaffMember {
   hireDate: string;
   salary: string;
   commissionRate: string;
+  commissionAmount: string;
   isActive: boolean;
   createdAt: string;
   updatedAt: string;
