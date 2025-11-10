@@ -114,6 +114,8 @@ export function StaffManagement() {
         return "bg-green-100 text-green-800";
       case "marketer":
         return "bg-orange-100 text-orange-800";
+      case "finance_manager":
+        return "bg-teal-100 text-teal-800";
       default:
         return "bg-gray-100 text-gray-800";
     }
@@ -478,6 +480,9 @@ export function StaffManagement() {
                       <SelectItem value="admin">Admin</SelectItem>
                       <SelectItem value="sales">Sales</SelectItem>
                       <SelectItem value="marketer">Marketer</SelectItem>
+                      <SelectItem value="finance_manager">
+                        Finance Manager
+                      </SelectItem>
                     </SelectContent>
                   </Select>
                 </div>

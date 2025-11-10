@@ -14,7 +14,12 @@ export interface User {
   updatedAt?: string;
 }
 
-export type UserRole = "super_admin" | "admin" | "sales" | "marketer";
+export type UserRole =
+  | "super_admin"
+  | "admin"
+  | "sales"
+  | "marketer"
+  | "finance_manager";
 
 export interface AuthContextType {
   user: User | null;

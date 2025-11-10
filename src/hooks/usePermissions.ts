@@ -73,6 +73,19 @@ export function usePermissions(): RolePermissions {
           canManageCustomers: false,
         };
 
+      case "finance_manager":
+        return {
+          canManageStaff: false,
+          canManagePayroll: true,
+          canViewFinancials: true,
+          canManageProduction: false,
+          canManageSales: false,
+          canManageMarketing: false,
+          canManageExpenses: true,
+          canViewAllData: true,
+          canManageCustomers: false,
+        };
+
       default:
         return {
           canManageStaff: false,

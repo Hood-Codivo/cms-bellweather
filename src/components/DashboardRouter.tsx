@@ -4,6 +4,7 @@ import { SuperAdminDashboard } from "./dashboards/SuperAdminDashboard";
 import { AdminDashboard } from "./dashboards/AdminDashboard";
 import { SalesDashboard } from "./dashboards/SalesDashboard";
 import MarketerDashboard from "./dashboards/MarketerDashboard";
+import { FinanceManagerDashboard } from "./dashboards/FinanceManagerDashboard";
 
 export function DashboardRouter() {
   const { user } = useAuth();
@@ -19,6 +20,8 @@ export function DashboardRouter() {
       return <SalesDashboard />;
     case "marketer":
       return <MarketerDashboard />;
+    case "finance_manager":
+      return <FinanceManagerDashboard />;
     default:
       return <SuperAdminDashboard />;
   }

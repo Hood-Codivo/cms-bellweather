@@ -126,8 +126,7 @@ const App = () => (
             <Route
               path="/financial-management"
               element={
-                <ProtectedRoute requiredPermission={undefined}>
-                  {/* Only super_admin can see this via sidebar logic */}
+                <ProtectedRoute requiredPermission="canViewFinancials">
                   <DashboardLayout>
                     <FinancialManagement />
                   </DashboardLayout>
@@ -137,8 +136,7 @@ const App = () => (
             <Route
               path="/analytics-reporting"
               element={
-                <ProtectedRoute requiredPermission={undefined}>
-                  {/* Only super_admin can see this via sidebar logic */}
+                <ProtectedRoute requiredPermission="canViewAllData">
                   <DashboardLayout>
                     <AnalyticsReporting />
                   </DashboardLayout>

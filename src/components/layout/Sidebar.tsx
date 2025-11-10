@@ -72,18 +72,18 @@ const navigationItems = [
     icon: Receipt,
     permission: "canManageExpenses" as const,
   },
-  // Only for super_admin
+  // For super_admin and finance_manager
   {
     name: "Financial Management",
     href: "/financial-management",
     icon: DollarSign,
-    permission: "super_admin_only",
+    permission: "canViewFinancials" as const,
   },
   {
     name: "Analytics & Reporting",
     href: "/analytics-reporting",
     icon: BarChart3,
-    permission: "super_admin_only",
+    permission: "canViewAllData" as const,
   },
 ];
 
@@ -104,16 +104,15 @@ export function Sidebar() {
         return "bg-green-100 text-green-800";
       case "marketer":
         return "bg-orange-100 text-orange-800";
+      case "finance_manager":
+        return "bg-teal-100 text-teal-800";
       default:
         return "bg-gray-100 text-gray-800";
     }
   };
 
   const filteredNavigation = navigationItems.filter(
-    (item) =>
-      !item.permission ||
-      permissions[item.permission] ||
-      (item.permission === "super_admin_only" && user.role === "super_admin")
+    (item) => !item.permission || permissions[item.permission]
   );
 
   return (
